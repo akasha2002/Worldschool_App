@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:myapp/Feedback/review.dart';
 
 class Reveiw_FeddBack extends StatefulWidget {
-  const Reveiw_FeddBack({Key? key}) : super(key: key);
-
+  Reveiw_FeddBack({
+    required this.homeData,
+    required this.jsonfeedback,
+  });
+  final jsonfeedback;
+  final homeData;
   @override
   State<Reveiw_FeddBack> createState() => _Reveiw_FeddBackState();
 }
@@ -12,6 +16,8 @@ class Reveiw_FeddBack extends StatefulWidget {
 class _Reveiw_FeddBackState extends State<Reveiw_FeddBack> {
   @override
   Widget build(BuildContext context) {
+    print('RE${widget.jsonfeedback}');
+    print(widget.homeData);
     return Scaffold(
       body: ListView.builder(
           itemCount: 3,

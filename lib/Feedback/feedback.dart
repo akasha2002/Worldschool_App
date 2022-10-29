@@ -1,16 +1,20 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:myapp/Feedback/report_feedback.dart';
 import 'package:myapp/Feedback/reveiw_feedback.dart';
 import 'package:myapp/Feedback/review.dart';
+import 'package:http/http.dart' as http;
 
 import 'history_feedback.dart';
-import 'report_feedback.dart';
 
 class FeedBack extends StatefulWidget {
   const FeedBack({Key? key, required this.homeData}) : super(key: key);
 
-  final List<dynamic> homeData;
+  final homeData;
+
   @override
   State<FeedBack> createState() => _FeedBackState();
 }
@@ -25,10 +29,20 @@ class _FeedBackState extends State<FeedBack>
     controller = new TabController(length: 2, vsync: this, initialIndex: 0);
   }
 
+  var jsonfeedback;
+
+  Future<List<dynamic>> fedback() async {
+    var response =
+        await http.get(Uri.parse("http://10.0.2.2:8090/api/feedback"));
+    return jsonDecode(response.body);
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.green));
+    jsonfeedback = fedback();
+    print('fun $jsonfeedback');
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xff03A375),
@@ -83,7 +97,8 @@ class _FeedBackState extends State<FeedBack>
         controller: controller,
         children: <Widget>[
           History_Feedback(),
-          Reveiw_FeddBack(),
+          Reveiw_FeddBack(
+              homeData: widget.homeData, jsonfeedback: jsonfeedback),
         ],
       ),
     );
