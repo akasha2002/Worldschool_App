@@ -18,7 +18,7 @@ import 'login.dart';
 class MyHomePage extends StatefulWidget {
   MyHomePage(this.loginData, this.homeData);
 
-  final List<dynamic> homeData;
+  final homeData;
   final List<dynamic> loginData;
 
   @override
@@ -35,6 +35,9 @@ class _MyHomePageState extends State<MyHomePage> {
             MaterialPageRoute(
                 builder: (context) => Profile(homeData: widget.homeData)));
         break;
+      case 1:
+        _onBackButtonPressed(context);
+        break;
     }
     ;
   }
@@ -48,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
     //  print(HomejsonData[0]["student_name"]);
     return Scaffold(
         // backgroundColor: const Color(0xff10FAB6),
-
+        //backgroundColor: Colors.blue.shade600,
         appBar: AppBar(
           title: Text("Dashboard"),
           backgroundColor: const Color(0xff03A375),
@@ -74,238 +77,239 @@ class _MyHomePageState extends State<MyHomePage> {
                 PopupMenuItem<int>(
                   value: 1,
                   child: Text('Log Out'),
-                  onTap: () {
-                    _onBackButtonPressed(context);
-                  },
                 ),
               ],
             ),
           ],
         ),
-        body: Column(
-          children: [
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height / 3,
-              padding: EdgeInsets.all(kDefaultPadding),
-              //color: kSecondaryColor,
-              decoration: BoxDecoration(
-                  color: kSecondaryColor,
-                  borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(kDefaultPadding * 2),
-                    bottomLeft: Radius.circular(kDefaultPadding * 2),
-                  )),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                'Hi ',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .subtitle1!
-                                    .copyWith(fontWeight: FontWeight.w200),
+        body: Center(
+          child: Column(
+            children: [
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height / 3,
+                padding: EdgeInsets.all(kDefaultPadding),
+                //color: kSecondaryColor,
+                decoration: BoxDecoration(
+                    color: kSecondaryColor,
+                    borderRadius: BorderRadius.only(
+                      bottomRight: Radius.circular(kDefaultPadding * 2),
+                      bottomLeft: Radius.circular(kDefaultPadding * 2),
+                    )),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  'Hi ',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .subtitle1!
+                                      .copyWith(fontWeight: FontWeight.w200),
+                                ),
+                                Text(
+                                  widget.homeData[0]["student_name"],
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .subtitle1!
+                                      .copyWith(
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: kDefaultPadding / 2,
+                            ),
+                            Text(
+                              "Class ${widget.homeData[0]["class"]} ${widget.homeData[0]["section"]} | Roll no : ${widget.homeData[0]["roll_number"]}",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .subtitle2!
+                                  .copyWith(
+                                    fontSize: 14.0,
+                                  ),
+                            ),
+                            SizedBox(
+                              height: kDefaultPadding / 2,
+                            ),
+                            Container(
+                              width: 100,
+                              height: 20,
+                              decoration: BoxDecoration(
+                                color: Colors.green,
+                                borderRadius:
+                                    BorderRadius.circular(kDefaultPadding),
                               ),
-                              Text(
-                                widget.homeData[0]["student_name"],
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .subtitle1!
-                                    .copyWith(
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                              )
-                            ],
+                              child: Center(
+                                child: Text(
+                                  '2020 - 2021',
+                                  style: TextStyle(
+                                      fontSize: 12.0,
+                                      color: kTextBlackColor,
+                                      fontWeight: FontWeight.w200),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: kDefaultPadding / 6,
+                        ),
+                        GestureDetector(
+                          onTap: () {},
+                          child: CircleAvatar(
+                            minRadius: 50.0,
+                            maxRadius: 50.0,
+                            backgroundColor: kSecondaryColor,
+                            backgroundImage: AssetImage("images/1.png"),
                           ),
-                          SizedBox(
-                            height: kDefaultPadding / 2,
-                          ),
-                          Text(
-                            "Class ${widget.homeData[0]["class"]} ${widget.homeData[0]["section"]} | Roll no : ${widget.homeData[0]["roll_number"]}",
-                            style:
-                                Theme.of(context).textTheme.subtitle2!.copyWith(
-                                      fontSize: 14.0,
-                                    ),
-                          ),
-                          SizedBox(
-                            height: kDefaultPadding / 2,
-                          ),
-                          Container(
-                            width: 100,
-                            height: 20,
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: kDefaultPadding,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        InkWell(
+                          onTap: () {},
+                          child: Container(
+                            width: MediaQuery.of(context).size.width / 2.5,
+                            height: MediaQuery.of(context).size.height / 9,
                             decoration: BoxDecoration(
-                              color: Colors.green,
+                              color: kOtherColor,
                               borderRadius:
                                   BorderRadius.circular(kDefaultPadding),
                             ),
-                            child: Center(
-                              child: Text(
-                                '2020 - 2021',
-                                style: TextStyle(
-                                    fontSize: 12.0,
-                                    color: kTextBlackColor,
-                                    fontWeight: FontWeight.w200),
-                              ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Text(
+                                  "Attendance",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText2!
+                                      .copyWith(
+                                          fontSize: 16.0,
+                                          color: kTextBlackColor,
+                                          fontWeight: FontWeight.w800),
+                                ),
+                                Text(
+                                  "90.02 %",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .subtitle2!
+                                      .copyWith(
+                                          fontSize: 25.0,
+                                          color: kTextBlackColor,
+                                          fontWeight: FontWeight.w300),
+                                ),
+                              ],
                             ),
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        height: kDefaultPadding / 6,
-                      ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: CircleAvatar(
-                          minRadius: 50.0,
-                          maxRadius: 50.0,
-                          backgroundColor: kSecondaryColor,
-                          backgroundImage: AssetImage("images/1.png"),
-                        ),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: kDefaultPadding,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      InkWell(
-                        onTap: () {},
-                        child: Container(
-                          width: MediaQuery.of(context).size.width / 2.5,
-                          height: MediaQuery.of(context).size.height / 9,
-                          decoration: BoxDecoration(
-                            color: kOtherColor,
-                            borderRadius:
-                                BorderRadius.circular(kDefaultPadding),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Text(
-                                "Attendance",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText2!
-                                    .copyWith(
-                                        fontSize: 16.0,
-                                        color: kTextBlackColor,
-                                        fontWeight: FontWeight.w800),
-                              ),
-                              Text(
-                                "90.02 %",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .subtitle2!
-                                    .copyWith(
-                                        fontSize: 25.0,
-                                        color: kTextBlackColor,
-                                        fontWeight: FontWeight.w300),
-                              ),
-                            ],
                           ),
                         ),
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: Container(
-                          width: MediaQuery.of(context).size.width / 2.5,
-                          height: MediaQuery.of(context).size.height / 9,
-                          decoration: BoxDecoration(
-                            color: kOtherColor,
-                            borderRadius:
-                                BorderRadius.circular(kDefaultPadding),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Text(
-                                "Fees Due",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText2!
-                                    .copyWith(
-                                        fontSize: 16.0,
-                                        color: kTextBlackColor,
-                                        fontWeight: FontWeight.w800),
-                              ),
-                              Text(
-                                "10,000",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .subtitle2!
-                                    .copyWith(
-                                        fontSize: 25.0,
-                                        color: kTextBlackColor,
-                                        fontWeight: FontWeight.w300),
-                              ),
-                            ],
+                        InkWell(
+                          onTap: () {},
+                          child: Container(
+                            width: MediaQuery.of(context).size.width / 2.5,
+                            height: MediaQuery.of(context).size.height / 9,
+                            decoration: BoxDecoration(
+                              color: kOtherColor,
+                              borderRadius:
+                                  BorderRadius.circular(kDefaultPadding),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Text(
+                                  "Fees Due",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText2!
+                                      .copyWith(
+                                          fontSize: 16.0,
+                                          color: kTextBlackColor,
+                                          fontWeight: FontWeight.w800),
+                                ),
+                                Text(
+                                  "10,000",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .subtitle2!
+                                      .copyWith(
+                                          fontSize: 25.0,
+                                          color: kTextBlackColor,
+                                          fontWeight: FontWeight.w300),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
-            Expanded(
-              child: Container(
-                color: Colors.transparent,
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(kDefaultPadding * 3),
-                      topRight: Radius.circular(kDefaultPadding * 3),
-                    ),
-                  ),
-                  child: ListView(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Homecard(
-                            onPress: () {},
-                            icon: 'images/1.png',
-                            title: 'hai',
-                          ),
-                          Homecard(
-                            onPress: () {},
-                            icon: 'images/1.png',
-                            title: 'hii',
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Homecard(
-                            onPress: () {},
-                            icon: 'images/1.png',
-                            title: 'hai',
-                          ),
-                          Homecard(
-                            onPress: () {},
-                            icon: 'images/1.png',
-                            title: 'hii',
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                      ],
+                    )
+                  ],
                 ),
               ),
-            )
-          ],
+              Expanded(
+                child: Container(
+                  color: Colors.transparent,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(kDefaultPadding * 3),
+                        topRight: Radius.circular(kDefaultPadding * 3),
+                      ),
+                    ),
+                    child: ListView(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Homecard(
+                              onPress: () {},
+                              icon: 'images/1.png',
+                              title: 'hai',
+                            ),
+                            Homecard(
+                              onPress: () {},
+                              icon: 'images/1.png',
+                              title: 'hii',
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Homecard(
+                              onPress: () {},
+                              icon: 'images/1.png',
+                              title: 'hai',
+                            ),
+                            Homecard(
+                              onPress: () {},
+                              icon: 'images/1.png',
+                              title: 'hii',
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
 
         //  body: const Center(),
