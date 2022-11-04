@@ -1,19 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:myapp/student_exam_results.dart';
-import 'package:myapp/Time_Table/timetable.dart';
-import 'Apply_leave_od/tabbar_apply_leave.dart';
-import 'Feedback/feedback.dart';
-import 'courses.dart';
-import 'notification.dart';
+import '../Drawer/drawer.dart';
+import '../notification.dart';
 import 'package:myapp/Student_profile/profile.dart';
 
-import 'aboutus.dart';
-
-import 'application_form.dart';
-
-import 'login.dart';
+import '../constants.dart';
+import '../login/login.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage(this.loginData, this.homeData);
@@ -39,7 +32,6 @@ class _MyHomePageState extends State<MyHomePage> {
         _onBackButtonPressed(context);
         break;
     }
-    ;
   }
 
   @override
@@ -313,158 +305,9 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
 
         //  body: const Center(),
-        drawer: Drawer(
-            elevation: 50.0,
-            child: ListView(
-              padding: EdgeInsets.zero,
-              children: [
-                const DrawerHeader(
-                  decoration: BoxDecoration(
-                    color: const Color(0xff03A375),
-                  ),
-
-                  //child: Text("Profile"),
-                  child: Icon(
-                    Icons.account_circle_rounded,
-                    size: 130,
-                  ),
-                ),
-                ListTile(
-                  leading: const Icon(Icons.school),
-                  title: const Text(
-                    'Courses',
-                    style: TextStyle(fontSize: 15, color: Colors.black),
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => course_student()));
-                  },
-                ),
-                Divider(
-                  height: 2.0,
-                  indent: 15.0,
-                  endIndent: 15.0,
-                  thickness: 1.5,
-                ),
-                ListTile(
-                  leading: const Icon(Icons.add_card_outlined),
-                  title: const Text(
-                    'Time Table',
-                    style: TextStyle(fontSize: 15, color: Colors.black),
-                  ),
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => timetable()));
-                  },
-                ),
-                Divider(
-                  height: 2.0,
-                  indent: 15.0,
-                  endIndent: 15.0,
-                  thickness: 1.5,
-                ),
-                ListTile(
-                  leading: const Icon(Icons.account_circle_sharp),
-                  title: const Text(
-                    'Apply leave & OD',
-                    style: TextStyle(fontSize: 15, color: Colors.black),
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => TabbarApplylLeave()));
-                  },
-                ),
-                Divider(
-                  height: 2.0,
-                  indent: 15.0,
-                  endIndent: 15.0,
-                  thickness: 1.5,
-                ),
-                ListTile(
-                  leading: const Icon(Icons.ad_units),
-                  title: const Text(
-                    'Exam  Result',
-                    style: TextStyle(fontSize: 15, color: Colors.black),
-                  ),
-                  //  Icons.account_circle,
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => StudentResults()));
-                  },
-                ),
-                Divider(
-                  height: 2.0,
-                  indent: 15.0,
-                  endIndent: 15.0,
-                  thickness: 1.5,
-                ),
-                ListTile(
-                  leading: const Icon(Icons.ad_units),
-                  title: const Text(
-                    'Feedback',
-                    style: TextStyle(fontSize: 15, color: Colors.black),
-                  ),
-                  //  Icons.account_circle,
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => FeedBack(
-                                  homeData: widget.homeData,
-                                )));
-                  },
-                ),
-                Divider(
-                  height: 2.0,
-                  indent: 15.0,
-                  endIndent: 15.0,
-                  thickness: 1.5,
-                ),
-                ListTile(
-                  leading: const Icon(Icons.account_circle_outlined),
-                  title: const Text(
-                    'Application Form',
-                    style: TextStyle(fontSize: 15, color: Colors.black),
-                  ),
-                  //  Icons.account_circle,
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Application_form()));
-                  },
-                ),
-                Divider(
-                  height: 2.0,
-                  indent: 15.0,
-                  endIndent: 15.0,
-                  thickness: 1.5,
-                ),
-                ListTile(
-                  leading: const Icon(Icons.info_outline),
-                  title: const Text(
-                    'About Us',
-                    style: TextStyle(fontSize: 15, color: Colors.black),
-                  ),
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => aboutus()));
-                  },
-                ),
-                Divider(
-                  height: 2.0,
-                  indent: 15.0,
-                  endIndent: 15.0,
-                  thickness: 1.5,
-                ),
-              ],
-            )));
+        drawer: Drawers(
+          homeData: widget.homeData,
+        ));
   }
 
   Future<bool> _onBackButtonPressed(BuildContext context) async {

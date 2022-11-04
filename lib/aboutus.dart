@@ -20,7 +20,7 @@ class aboutus extends StatelessWidget {
                 width: double.infinity,
                 height: 250,
                 decoration: BoxDecoration(
-                  //color: kPrimaryColor,
+                    //color: kPrimaryColor,
                     color: const Color(0xFFC8E6C9),
                     borderRadius: BorderRadius.only(
                       bottomRight: Radius.circular(kDefaultPadding * 4),
@@ -89,19 +89,19 @@ class ProfileDetailRow extends StatelessWidget {
               Text(
                 title,
                 style: Theme.of(context).textTheme.subtitle2!.copyWith(
-                  color: kTextLightColor,
-                  fontWeight: FontWeight.w800,
-                  fontSize: 20.0,
-                ),
+                      color: kTextLightColor,
+                      fontWeight: FontWeight.w800,
+                      fontSize: 20.0,
+                    ),
               ),
               kHalfSizedBox,
               Text(
                 value,
                 style: Theme.of(context).textTheme.subtitle2!.copyWith(
-                  color: kTextBlackColor,
-                  fontWeight: FontWeight.w800,
-                  fontSize: 18.0,
-                ),
+                      color: kTextBlackColor,
+                      fontWeight: FontWeight.w800,
+                      fontSize: 18.0,
+                    ),
               ),
               kHalfSizedBox,
               SizedBox(
@@ -136,16 +136,16 @@ class ProfileDetailColum extends StatelessWidget {
             children: [
               Text(title,
                   style: Theme.of(context).textTheme.subtitle2!.copyWith(
-                    color: kTextLightColor,
-                    fontSize: 15.0,
-                  )),
+                        color: kTextLightColor,
+                        fontSize: 15.0,
+                      )),
               kHalfSizedBox,
               Text(value,
                   style: Theme.of(context).textTheme.subtitle2!.copyWith(
-                    color: kTextBlackColor,
-                    fontSize: 15.0,
-                    fontWeight: FontWeight.w600,
-                  )),
+                        color: kTextBlackColor,
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.w600,
+                      )),
               kHalfSizedBox,
               SizedBox(
                 width: MediaQuery.of(context).size.width / 1.1,

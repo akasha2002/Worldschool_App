@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 //colors
-const Color kPrimaryColor = Color(0xFFC8E6C9);//0xFF345FB4
+const Color kPrimaryColor = Color(0xFFC8E6C9); //0xFF345FB4
 const Color kSecondaryColor = Color(0xFFC8E6C9);
 const Color kTextBlackColor = Color(0xFF313131);
 const Color kTextWhiteColor = Color(0xFFFFFFFF);
@@ -27,7 +27,6 @@ const kHalfSizedBox = SizedBox(
 const kHalfWidthSizedBox = SizedBox(
   width: kDefaultPadding / 2,
 );
-
 
 //validation for mobile
 const String mobilePattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';

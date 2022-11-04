@@ -44,8 +44,8 @@ class StudentYear extends StatelessWidget {
         child: Text(
           studentYear,
           style: Theme.of(context).textTheme.subtitle2!.copyWith(
-            color: kTextBlackColor,
-          ),
+                color: kTextBlackColor,
+              ),
         ),
       ),
     );
@@ -74,9 +74,9 @@ class StudentPicture extends StatelessWidget {
 class StudentDataCard extends StatelessWidget {
   const StudentDataCard(
       {Key? key,
-        required this.title,
-        required this.value,
-        required this.onPress})
+      required this.title,
+      required this.value,
+      required this.onPress})
       : super(key: key);
   final String title;
   final String value;
@@ -98,14 +98,14 @@ class StudentDataCard extends StatelessWidget {
             Text(
               title,
               style: Theme.of(context).textTheme.subtitle1!.copyWith(
-                color: kTextBlackColor,
-              ),
+                    color: kTextBlackColor,
+                  ),
             ),
             Text(
               value,
               style: Theme.of(context).textTheme.subtitle2!.copyWith(
-                color: kTextLightColor,
-              ),
+                    color: kTextLightColor,
+                  ),
             ),
           ],
         ),
