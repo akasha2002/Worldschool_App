@@ -69,6 +69,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 PopupMenuItem<int>(
                   value: 1,
                   child: Text('Log Out'),
+                  onTap: () {
+                    Login.isLogin = false;
+                  },
                 ),
               ],
             ),
