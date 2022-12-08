@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,9 +12,10 @@ import 'package:http/http.dart' as http;
 import 'history_feedback.dart';
 
 class FeedBack extends StatefulWidget {
-  const FeedBack({Key? key, required this.homeData}) : super(key: key);
+  const FeedBack({Key? key, required, required this.homeData})
+      : super(key: key);
 
-  final homeData;
+  final List<dynamic> homeData;
 
   @override
   State<FeedBack> createState() => _FeedBackState();
@@ -26,15 +28,42 @@ class _FeedBackState extends State<FeedBack>
   @override
   void initState() {
     super.initState();
-    controller = new TabController(length: 2, vsync: this, initialIndex: 0);
+    controller = TabController(length: 2, vsync: this, initialIndex: 0);
+    FeedbackDetailsHistory();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    isLoadingState();
   }
 
   var jsonfeedback;
+  var jsonHistoryFeedback;
+  bool isLoading = true;
 
-  Future<List<dynamic>> fedback() async {
-    var response =
-        await http.get(Uri.parse("http://10.0.2.2:8090/api/feedback"));
-    return jsonDecode(response.body);
+  Future<void> FeedbackDetailsHistory() async {
+    print("api calls");
+    var response = await http.get(Uri.parse(
+        "http://10.0.2.2:8090/api/feedbackrecieve/${widget.homeData[0]['register_number']}"));
+    print(" feedback ${response.statusCode}");
+    jsonHistoryFeedback = jsonDecode(response.body);
+    print(jsonHistoryFeedback);
+    print(widget.homeData[0]['register_number']);
+    isLoadingState();
+  }
+
+  Future<void> fedback() async {
+    var response = await http
+        .get(Uri.parse("http://localhost:8090/api/feedbackrecieve/2015032"));
+    print(response.body);
+  }
+
+  void isLoadingState() {
+    setState(() {
+      isLoading = !isLoading;
+    });
   }
 
   @override
@@ -50,12 +79,9 @@ class _FeedBackState extends State<FeedBack>
         actions: [
           InkWell(
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => Feedback_Overview(
-                            homeData: widget.homeData,
-                          )));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) =>
+                      Feedback_Overview(homeData: widget.homeData)));
             },
             child: Row(
               children: [
@@ -96,7 +122,21 @@ class _FeedBackState extends State<FeedBack>
       body: TabBarView(
         controller: controller,
         children: <Widget>[
-          History_Feedback(),
+          BlurryModalProgressHUD(
+            inAsyncCall: isLoading,
+            blurEffectIntensity: 1,
+            progressIndicator: const CircularProgressIndicator(
+              backgroundColor: Colors.white,
+              color: Colors.green,
+            ),
+            dismissible: false,
+            opacity: 0.3,
+            color: Colors.white,
+            child: History_Feedback(
+              homeData: widget.homeData,
+              historyData: jsonHistoryFeedback,
+            ),
+          ),
           Reveiw_FeddBack(
               homeData: widget.homeData, jsonfeedback: jsonfeedback),
         ],

@@ -103,12 +103,8 @@ class Drawers extends StatelessWidget {
               ),
               //  Icons.account_circle,
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => FeedBack(
-                              homeData: homeData,
-                            )));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => FeedBack(homeData: homeData)));
               },
             ),
             divider(),

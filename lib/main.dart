@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/constants.dart';
+import 'Feedback/feedback.dart';
 import 'auth.dart';
+import 'login/login.dart';
 
 void main() => runApp(MyApp());
 
@@ -24,7 +26,7 @@ class MyApp extends StatelessWidget {
                         fontSize: 35.0,
                         fontWeight: FontWeight.bold),
                   )),
-      home: Auth(),
+      home: const Auth(),
       builder: EasyLoading.init(),
     );
   }

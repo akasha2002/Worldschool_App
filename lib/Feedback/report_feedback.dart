@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:myapp/Feedback/feedback.dart';
 import 'package:snippet_coder_utils/FormHelper.dart';
 
 import '../Api_Calls/feedback/feedback_report_api.dart';
@@ -104,7 +105,7 @@ class _Feedback_OverviewState extends State<Feedback_Overview> {
     String sender = widget.homeData[0]['register_number'];
     return Scaffold(
       appBar: AppBar(
-        title: Text("Report"),
+        title: const Text("Report"),
         backgroundColor: const Color(0xff03A375),
       ),
       backgroundColor: Colors.white,
@@ -118,11 +119,11 @@ class _Feedback_OverviewState extends State<Feedback_Overview> {
                   context,
                   "Category",
                   "ERP",
-                  this.categoriesId,
-                  this.categories,
+                  categoriesId,
+                  categories,
                   (onChangedVal) {
-                    this.categoriesId = onChangedVal;
-                    categoriesSwitch(this.categoriesId);
+                    categoriesId = onChangedVal;
+                    categoriesSwitch(categoriesId);
                   },
                   (onValidateVal) {
                     if (onValidateVal == null) {
@@ -130,7 +131,7 @@ class _Feedback_OverviewState extends State<Feedback_Overview> {
                     }
                     return null;
                   },
-                  prefixIcon: Icon(Icons.home),
+                  prefixIcon: const Icon(Icons.home),
                   borderColor: Theme.of(context).primaryColor,
                   borderFocusColor: Theme.of(context).primaryColor,
                   borderRadius: 15,
@@ -212,7 +213,7 @@ class _Feedback_OverviewState extends State<Feedback_Overview> {
   }
 
   buildFeedbackForm() {
-    return Container(
+    return SizedBox(
         height: 100.0,
         child: Stack(
           children: <Widget>[
