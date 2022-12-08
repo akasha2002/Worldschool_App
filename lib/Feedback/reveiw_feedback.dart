@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:myapp/Feedback/review.dart';
 
 class Reveiw_FeddBack extends StatefulWidget {
-  Reveiw_FeddBack({
+  const Reveiw_FeddBack({
     required this.homeData,
     required this.jsonfeedback,
   });
