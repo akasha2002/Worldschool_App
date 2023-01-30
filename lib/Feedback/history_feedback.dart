@@ -50,8 +50,12 @@ class _History_FeedbackState extends State<History_Feedback> {
                 itemBuilder: (context, index) {
                   return InkWell(
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Messages()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Messages(
+                                    data: widget.historyData,
+                                  )));
                     },
                     child: Column(
                       children: <Widget>[

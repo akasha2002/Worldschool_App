@@ -310,6 +310,7 @@ class _MyHomePageState extends State<MyHomePage> {
         //  body: const Center(),
         drawer: Drawers(
           homeData: widget.homeData,
+          loginData: widget.loginData,
         ));
   }
 

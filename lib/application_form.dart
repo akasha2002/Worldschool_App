@@ -193,6 +193,7 @@ class _Application_formState extends State<Application_form> {
                 int.parse(fatherphonenumber.text),
                 int.parse(motherphonenumber.text),
               );
+              Navigator.of(context).pop();
             },
             child: Text(
               "Submit",
