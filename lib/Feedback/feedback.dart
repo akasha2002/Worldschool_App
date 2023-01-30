@@ -6,16 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:myapp/Feedback/report_feedback.dart';
 import 'package:myapp/Feedback/reveiw_feedback.dart';
-import 'package:myapp/Feedback/review.dart';
 import 'package:http/http.dart' as http;
 
 import 'history_feedback.dart';
 
 class FeedBack extends StatefulWidget {
-  const FeedBack({Key? key, required, required this.homeData})
+  const FeedBack({Key? key, required, required this.homeData, this.loginData})
       : super(key: key);
 
   final List<dynamic> homeData;
+  final loginData;
 
   @override
   State<FeedBack> createState() => _FeedBackState();
@@ -85,10 +85,10 @@ class _FeedBackState extends State<FeedBack>
             },
             child: Row(
               children: [
-                Icon(Icons.report_gmailerrorred),
+                const Icon(Icons.report_gmailerrorred),
                 Container(
-                    margin: EdgeInsets.all(3),
-                    child: Text(
+                    margin: const EdgeInsets.all(3),
+                    child: const Text(
                       "Report",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ))
@@ -104,18 +104,21 @@ class _FeedBackState extends State<FeedBack>
           labelColor: Colors.white,
           unselectedLabelColor: Colors.white,
           tabs: [
-            Tab(
+            const Tab(
               child: Text(
                 "History",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
             ),
-            Tab(
-              child: Text(
-                "Review FeedBack",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-              ),
-            )
+            widget.loginData[0]['user_type'] == 'staff'
+                ? const Tab(
+                    child: Text(
+                      "Review FeedBack",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
+                  )
+                : const SizedBox()
           ],
         ),
       ),

@@ -2,31 +2,32 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Messages extends StatelessWidget {
-  const Messages({Key? key}) : super(key: key);
-
+  const Messages({Key? key, this.data}) : super(key: key);
+  final data;
   @override
   Widget build(BuildContext context) {
+    print(data);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xff03A375),
-        title: Text("Messages"),
+        title: const Text("Messages"),
       ),
       body: Container(
-        margin: EdgeInsets.all(20),
+        margin: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-                padding: EdgeInsets.all(3),
-                color: Color(0xFFC8E6C9),
+                padding: const EdgeInsets.all(3),
+                color: const Color(0xFFC8E6C9),
                 child: Text(
-                  "ERP",
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  data[0]['feedback_category'],
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 )),
             Container(
-                margin: EdgeInsets.all(10),
+                margin: const EdgeInsets.all(10),
                 height: 50,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     border: Border(
                         top: BorderSide(width: 0.1),
                         left: BorderSide(width: 0.5),
@@ -34,18 +35,18 @@ class Messages extends StatelessWidget {
                         bottom: BorderSide(width: 0.1))),
                 // color: Colors.grey,
                 width: double.infinity,
-                child: Text("data")),
-            Text(
-              "You Reply :",
+                child: Text(data[0]['feedback_content'])),
+            const Text(
+              "Reply message:",
               style: TextStyle(fontWeight: FontWeight.w700),
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             Container(
-                margin: EdgeInsets.all(10),
+                margin: const EdgeInsets.all(10),
                 height: 80,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     border: Border(
                         top: BorderSide(width: 0.5),
                         left: BorderSide(width: 0.5),
@@ -53,7 +54,7 @@ class Messages extends StatelessWidget {
                         bottom: BorderSide(width: 1))),
                 // color: Colors.grey,
                 width: double.infinity,
-                child: Text("data")),
+                child: Text(data[0]['feedback_reply'] ?? 'null')),
           ],
         ),
       ),

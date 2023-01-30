@@ -412,6 +412,7 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
                         MaterialPageRoute(
                             builder: (context) => FeedBack(
                                   homeData: widget.homeData,
+                                  loginData: widget.loginData,
                                 )));
                   },
                 ),

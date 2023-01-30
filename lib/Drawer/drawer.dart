@@ -9,9 +9,11 @@ import '../courses.dart';
 import '../student_exam_results.dart';
 
 class Drawers extends StatelessWidget {
-  const Drawers({Key? key, required this.homeData}) : super(key: key);
+  const Drawers({Key? key, required this.homeData, this.loginData})
+      : super(key: key);
 
   final List<dynamic> homeData;
+  final loginData;
 
   divider() {
     return const Divider(
@@ -104,7 +106,10 @@ class Drawers extends StatelessWidget {
               //  Icons.account_circle,
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => FeedBack(homeData: homeData)));
+                    builder: (context) => FeedBack(
+                          homeData: homeData,
+                          loginData: loginData,
+                        )));
               },
             ),
             divider(),
