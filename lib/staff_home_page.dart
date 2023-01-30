@@ -39,6 +39,9 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
         // Navigator.push(
         //     Context, MaterialPageRoute(builder: (context) => Profile()));
         break;
+      case 1:
+        _onBackButtonPressed(context);
+        break;
     }
     ;
   }
@@ -86,15 +89,15 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
             PopupMenuButton<int>(
               onSelected: (item) => onSelected(context, item),
               itemBuilder: (itemBuilder) => [
-                PopupMenuItem<int>(
+                const PopupMenuItem<int>(
                   value: 0,
                   child: Text('Profile'),
                 ),
                 PopupMenuItem<int>(
                   value: 1,
-                  child: Text('Log Out'),
+                  child: const Text('Log Out'),
                   onTap: () {
-                    _onBackButtonPressed(context);
+                    Login.isLogin = false;
                   },
                 ),
               ],
