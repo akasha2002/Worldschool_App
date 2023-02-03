@@ -21,17 +21,17 @@ import 'application_form.dart';
 import 'constants.dart';
 import 'login/login.dart';
 
-class MyStaffHomePage extends StatefulWidget {
-  MyStaffHomePage(this.loginData, this.homeData);
+class MyAdminHomePage extends StatefulWidget {
+  MyAdminHomePage(this.loginData, this.homeData);
 
   final List<dynamic> homeData;
   final List<dynamic> loginData;
 
   @override
-  State<MyStaffHomePage> createState() => _MyStaffHomePageState();
+  State<MyAdminHomePage> createState() => _MyAdminHomePage();
 }
 
-class _MyStaffHomePageState extends State<MyStaffHomePage> {
+class _MyAdminHomePage extends State<MyAdminHomePage> {
   @override
   void onSelected(BuildContext Context, int item) {
     switch (item) {
@@ -65,7 +65,7 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
   Widget build(BuildContext context) {
     // Relod();
     print("home page ${widget.loginData[0]["login_user_name"]}");
-    print("home page data ${widget.homeData[0]["staff_name"]}");
+    print('data${widget.homeData[0]}');
     // HomeConnections();
     //  print(HomejsonData[0]["student_name"]);
     return Scaffold(
@@ -136,7 +136,7 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
                                     .copyWith(fontWeight: FontWeight.w200),
                               ),
                               Text(
-                                widget.homeData[0]["staff_name"],
+                                widget.homeData[0]["admin_name"],
                                 style: Theme.of(context)
                                     .textTheme
                                     .subtitle1!
@@ -150,7 +150,7 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
                             height: kDefaultPadding / 2,
                           ),
                           Text(
-                            " Staff code : ${widget.homeData[0]["staff_code"]}",
+                            " Staff code : ${widget.homeData[0]["admin_code"]}",
                             style:
                                 Theme.of(context).textTheme.subtitle2!.copyWith(
                                       fontSize: 14.0,
@@ -166,15 +166,6 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
                               color: Colors.green,
                               borderRadius:
                                   BorderRadius.circular(kDefaultPadding),
-                            ),
-                            child: Center(
-                              child: Text(
-                                widget.homeData[0]["staff_experience"],
-                                style: TextStyle(
-                                    fontSize: 12.0,
-                                    color: kTextBlackColor,
-                                    fontWeight: FontWeight.w200),
-                              ),
                             ),
                           )
                         ],
@@ -350,7 +341,7 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
                 ListTile(
                   leading: const Icon(Icons.account_circle_rounded),
                   title: const Text(
-                    'Attendance Entry',
+                    'Attendance',
                     style: TextStyle(fontSize: 15, color: Colors.black),
                   ),
                   //  Icons.account_circle,
@@ -456,6 +447,25 @@ class _MyStaffHomePageState extends State<MyStaffHomePage> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => Enquiry_Report()));
+                  },
+                ),
+                Divider(
+                  height: 2.0,
+                  indent: 15.0,
+                  endIndent: 15.0,
+                  thickness: 1.5,
+                ),
+                ListTile(
+                  leading: const Icon(Icons.account_balance_sharp),
+                  title: const Text(
+                    'Admin view Profile',
+                    style: TextStyle(fontSize: 15, color: Colors.black),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => admin_profile()));
                   },
                 ),
                 Divider(

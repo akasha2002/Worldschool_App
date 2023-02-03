@@ -6,6 +6,7 @@ import 'package:myapp/home/home.dart';
 import 'package:http/http.dart' as http;
 import 'package:myapp/staff_home_page.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import '../admin_home_page.dart';
 import 'login_body_widget.dart';
 
 class Login extends StatefulWidget {
@@ -80,6 +81,13 @@ class _LoginState extends State<Login> {
             MaterialPageRoute(
                 builder: (context) =>
                     MyStaffHomePage(loginData, homeJsonData)));
+        break;
+      case 'admin':
+        Navigator.push(
+            (context),
+            MaterialPageRoute(
+                builder: (context) =>
+                    MyAdminHomePage(loginData, homeJsonData)));
         break;
 
       default:
@@ -159,8 +167,14 @@ class _LoginState extends State<Login> {
           "http://10.0.2.2:8090/api/staff/${loginData[0]["user_code"].toString()}"));
       print("staff status code ${response3.statusCode}");
       homeJsonData = jsonDecode(response3.body);
-
       print("staff data $homeJsonData");
+    } else if (loginData[0]["login_user_name"].toString().isNotEmpty &&
+        loginData[0]["user_type"].toString() == "admin") {
+      var response3 = await http.get(Uri.parse(
+          "http://10.0.2.2:8090/api/admin/${loginData[0]["user_code"].toString()}"));
+      print("staff status code ${response3.statusCode}");
+      homeJsonData = jsonDecode(response3.body);
+      print("admin code $homeJsonData");
     } else {
       print("Failed to connect");
     }
@@ -181,6 +195,10 @@ class _LoginState extends State<Login> {
         } else if (loginData[0]["user_type"].toString() == "staff") {
           await storage.write(key: "type", value: 'staff');
           homeRoute('staff');
+          loading();
+        } else if (loginData[0]["user_type"].toString() == "admin") {
+          await storage.write(key: "type", value: 'staff');
+          homeRoute('admin');
           loading();
         }
       }
